@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  https://www.ibm.com/support/knowledgecenter/SSAW57_8.5.5/com.ibm.websphere.nd.doc/ae/tejb_jpa3rdparty.html -->
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+        version="2.0">
+        
+	<persistence-unit name="domain-model-test" transaction-type="JTA">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<jta-data-source>jdbc/SOUSCHEF</jta-data-source>
+		<class>com.souschef.domain.data.model.ComponentCategory</class>
+		<class>com.souschef.domain.data.model.Component</class>
+		<class>com.souschef.domain.data.model.Recipe</class>
+		<class>com.souschef.domain.data.model.Ingredient</class>
+		<validation-mode>NONE</validation-mode>
+			 
+		<!-- http://www-01.ibm.com/support/docview.wss?uid=swg1PM26361 -->
+		<properties>			
+			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle12cDialect"/>
+			<property name="hibernate.connection.autocommit" value="false"/>
+			<property name="hibernate.transaction.jta.platform" value="com.souschef.hibernate.WebSphereExtendedJtaPlatform" />
+			<property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.WebSphereExtendedJTATransactionLookup" />	
+			<property name = "hibernate.show_sql" value = "true" />		
+		</properties>			
+		 
+		
+	</persistence-unit>
+</persistence>

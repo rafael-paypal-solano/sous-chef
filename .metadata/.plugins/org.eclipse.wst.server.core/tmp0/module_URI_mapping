@@ -1,0 +1,14 @@
+#Sun Mar 19 17:09:11 AST 2017
+sous-chef/domain-data-dao=lib/domain-data-dao.jar
+sous-chef/domain-client=domain-client.jar
+sous-chef/hibernate-commons-annotations-5.0.1.Final.jar=hibernate-commons-annotations-5.0.1.Final.jar
+sous-chef/transaction=transaction.war
+sous-chef/domain-ejb=domain-ejb.jar
+sous-chef/domain-data-model=lib/domain-data-model.jar
+sous-chef/web-common=lib/web-common.jar
+sous-chef/data-common=lib/data-common.jar
+sous-chef/jandex-2.0.3.Final.jar=jandex-2.0.3.Final.jar
+sous-chef/was-extensions-4-hibernate=lib/was-extensions-4-hibernate.jar
+sous-chef/hibernate-core-5.2.7.Final.jar=hibernate-core-5.2.7.Final.jar
+sous-chef/domain-web=domain-web.war
+sous-chef/javassist-3.20.0-GA.jar=javassist-3.20.0-GA.jar

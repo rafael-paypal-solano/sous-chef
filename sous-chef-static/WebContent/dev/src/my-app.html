@@ -1,0 +1,244 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/iron-scroll-target-behavior/iron-scroll-target-behavior.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="my-icons.html">
+
+<dom-module id="my-app">
+  <template>
+    <style>
+      :host {
+        --app-primary-color: #4285f4;
+        --app-secondary-color: black;
+
+        display: block;
+      }
+
+      app-header {
+        color: #fff;
+        background-color: var(--app-primary-color);
+      }
+      app-header paper-icon-button {
+        --paper-icon-button-ink-color: white;
+      }
+
+      .drawer-list {
+        margin: 0 20px;
+      }
+
+      .drawer-list a {
+        display: block;
+        padding: 0 16px;
+        text-decoration: none;
+        color: var(--app-secondary-color);
+        line-height: 40px;
+      }
+
+      .drawer-list a.iron-selected {
+        color: black;
+        font-weight: bold;
+      }
+         
+     .app-drawer-icon {
+       width:20%; height:auto; vertical-align: middle; margin-right:1.5em;
+     }
+
+     .hidden-icon {
+       display:none;
+     }
+     #scrollable-element {display:block;height:100%;overflow-y: auto; }
+
+    </style>
+
+    <app-location route="{{route}}"></app-location>
+    <app-route
+        route="{{route}}"
+        pattern="/:page"
+        data="{{routeData}}"
+        tail="{{subroute}}"></app-route>
+
+    <app-drawer-layout fullbleed>
+    
+      <iron-ajax
+        id="categoriesLoader"
+        url="souschef-app/domain-web/service/component-category/all"
+        handle-as="json"
+        on-response="onCategoriesLoaderResponse"
+        debounce-duration="300">
+      </iron-ajax>
+
+      <app-drawer id="drawer">
+        <app-toolbar>Categories</app-toolbar>
+          <div id="scrollable-element">
+            <x-element scroll-target="scrollable-element">
+              <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+                <template is="dom-repeat" items="{{categories}}">
+                      <a onclick="onCategoryLinkClickProxy(this)" rel="{{item.name}}" name="{{item.id}}" href="/category-view"><img class="app-drawer-icon" src="images/categories/{{item.id}}.svg" /><span>{{item.name}}</span></a>                
+                  </template>
+              </iron-selector>
+            </x-element>
+          </div>
+      </app-drawer>
+
+      <!-- Main content -->
+      <app-header-layout has-scrolling-region>
+
+        <app-header condenses reveals effects="waterfall">
+          <app-toolbar>
+            <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
+            <div main-title>Souschef</div>
+            <paper-icon-button class="hidden-icon" icon="my-icons:arrow-back" id="backIcon" on-tap="onBackIconClick"></paper-icon-button>                      
+          </app-toolbar>
+        </app-header>
+
+        <iron-pages
+            id="iron-pages-container"
+            selected="[[page]]"
+            attr-for-selected="name"
+            fallback-selection="view404"
+            role="main">
+          <welcome-view name="welcome-view"></welcome-view>
+          <category-view name="category-view"></category-view>
+          <my-view404 name="view404"></my-view404>
+        </iron-pages>
+      </app-header-layout>
+    </app-drawer-layout>
+  </template>
+
+  <script>
+
+    function onCategoryLinkClickProxy(anchor) {    
+      var myApp = document.getElementsByTagName("my-app")[0];
+      var category = {id: anchor.name, name: anchor.rel}
+      myApp.onCategoryLinkClick(category);
+    }
+
+    function myAppEventHandler(event) {
+      var data = event.data;
+
+      switch(data) {
+        case "onEditMode":
+          this.onEditModeHandler(event);
+          break;
+
+        case "onListMode":
+          this.onListModeHandler(event);
+          break;
+
+        default:
+          break;
+      }
+    }
+
+
+    Polymer({
+      is: 'my-app',
+
+      properties: {
+        page: {
+          type: String,
+          reflectToAttribute: true,
+          observer: '_pageChanged',
+        },
+        categories: {
+          type:Array
+        }
+      },
+
+      onEditModeHandler: function (event) {
+        this.$.backIcon.classList.remove('hidden-icon');
+      },
+
+      onListModeHandler: function (event) {
+        this.$.backIcon.classList.add('hidden-icon');
+      },
+
+      onBackIconClick: function () {
+        window.postMessage("onBackIcon", "*")
+      },
+
+      onCategoryLinkClick: function(category) {
+        var ironPagesContainer = this.$["iron-pages-container"];
+
+        if(ironPagesContainer.selected == "category-view") {
+          let categoryView = ironPagesContainer.selectedItem;
+          categoryView.reload(category);
+        }else {
+          localStorage.setItem("category-view/category", JSON.stringify(category));
+        }
+        
+        if (RunTime.isOffline()){
+          this.$.drawer.close();
+        }
+        
+      },
+
+      onPageLoadedHandlers: {
+        "category-view": function() {          
+
+        },
+
+        "welcome-view": function() {
+          
+        }
+      },
+
+      observers: [
+        '_routePageChanged(routeData.page)',
+      ],
+
+      _routePageChanged: function(page) {
+        this.page = page || 'welcome-view';
+
+        if (RunTime.isOffline()) {
+          this.$.drawer.close();
+        }
+      },
+
+      _pageChanged: function(page) {
+          var resolvedPageUrl = this.resolveUrl(page + '.html');          
+          this.importHref(
+            resolvedPageUrl, 
+            this.onPageLoadedHandlers[page], 
+            this._showPage404,
+            true
+          );        
+      },
+
+      _showPage404: function() {
+        this.page = 'view404';
+      },
+
+      onCategoriesLoaderResponse: function(event) {
+        this.categories = event.detail.response;        
+      },
+      
+      ready: function() { ///souschef-app/domain-web/service/component-category/all
+        var categoriesLoader = this.$.categoriesLoader;         
+        categoriesLoader.url = RunTime.host()+"/souschef-app/domain-web/service/component-category/all";
+        categoriesLoader.generateRequest();   
+        window.addEventListener("message", myAppEventHandler.bind(this));
+      }      
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,88 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="welcome-view">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+        padding: 10px;
+      }
+
+      .company-logo {
+        vertical-align: middle;
+        margin-right:10px;
+        max-width:56px;
+        max-height:56px;
+        width:auto;
+        height:auto;        
+      }
+
+      .company-logo-svg {
+        width:56px;
+        height:auto;
+        vertical-align: middle;
+        margin-right:5px;
+      }
+
+      .no-bullet-list {
+        list-style-type: none;
+        padding-left: 0;
+      }
+
+      .card {
+        margin: 12px;
+        padding: 16px;
+      }
+    </style>
+
+    <div class="card">
+      <h1>Souschef Application</h1>      
+      <h2>Abstract</h2>
+      <p>This application is a showcase that depicts my current web development skills to potential employers. The vertical menu to the left is a list of food categories.Upon clicking any food category, a table listing all components belonging to the selected category becomes visible in the main page area.</p>
+      <p>
+        Users can edit any product listed in the table by selecting the the desired row. Upong tapping or clicking a row, a edit form becomes visible;
+        may vanishes by hitting either the save or back button.
+      </p>
+      <h2>Products and Libraries</h2>
+      <ul class="no-bullet-list">
+        <li><img class="company-logo" src="https://www.kemper.com/wps/PA_Blurb_1/images/oob/websphere.gif"/><span>Websphere Application Server</span></li>
+        <li><img class="company-logo" src="../images/manifest/icon-48x48.png"/><span>Polymer</span></li>
+        <li><img class="company-logo-svg" src="https://pablomonteserin.com/xhydt/themes/monteserin_genesis3/images/cursos/hibernate.svg"/><span>Hibernate</span></li>
+        <li><img class="company-logo" src="http://www.pulxar.com.co/wordpress/wp-content/uploads/2016/11/oracle.png"/><span>Oracle</span></li>
+        
+      </ul>
+
+      <h2>Technologies and Standards</h2>
+      <p>Visual and backend functionality was achieved via the J2EE technlogies I have mastered over the years, namely:</p>
+      <ul>
+          <li>JavaScript (ES6), HTML5 and CSS3.</li>
+          <li>Servlets and REST Services.</li>
+          <li>Object Relational Mapping (ORM).</li>
+          <li>Enterprise Java Beans (Remote and Local).</li>          
+          <li>Relational Databases.</li> 
+          <li>Version Control Systems and Code Repositories.</li> 
+      </ul>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'welcome-view',
+      ready: function() {        
+      },
+      attached: function() {
+      }   
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,9 @@
+#!/bin/bash
+CURRENT_DIR=`pwd`
+CURRENT_DATE=`date`
+COMMIT_DIR=$1
+
+cd $COMMIT_DIR
+git add *
+git commit -am "$COMMIT_DIR commited on $CURRENT_DATE"
+cd $CURRENT_DIR

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="sous-chef">
+        <wb-resource deploy-path="/" source-path="/" tag="defaultRootSource"/>
+        <dependent-module archiveName="transaction.war" deploy-path="/" handle="module:/resource/transaction/transaction">
+            <dependent-object>Module_1485461583759</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="web-common.jar" deploy-path="/lib" handle="module:/resource/web-common/web-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="data-common.jar" deploy-path="/lib" handle="module:/resource/data-common/data-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="domain-ejb.jar" deploy-path="/" handle="module:/resource/domain-ejb/domain-ejb">
+            <dependent-object>Module_1486695472736</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="domain-web.war" deploy-path="/" handle="module:/resource/domain-web/domain-web">
+            <dependent-object>Module_1486695538216</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="domain-client.jar" deploy-path="/" handle="module:/resource/domain-client/domain-client">
+            <dependent-object>Module_1486698283780</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-beanutils-1.9.3.jar" deploy-path="/lib" handle="module:/classpath/lib/sous-chef/lib/commons-beanutils-1.9.3/commons-beanutils-1.9.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="was-extensions-4-hibernate.jar" deploy-path="/lib" handle="module:/resource/was-extensions-4-hibernate/was-extensions-4-hibernate">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="javassist-3.20.0-GA.jar" deploy-path="/" handle="module:/classpath/lib/sous-chef/lib/hibernate-5.2.7/javassist-3.20.0-GA.jar">
+            <dependent-object>Module_1487279810204</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hibernate-core-5.2.7.Final.jar" deploy-path="/" handle="module:/classpath/lib/sous-chef/lib/hibernate-5.2.7/hibernate-core-5.2.7.Final.jar">
+            <dependent-object>Module_1487279810309</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="classmate-1.3.0.jar" deploy-path="/lib" handle="module:/classpath/lib/sous-chef/lib/hibernate-5.2.7/classmate-1.3.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jboss-logging-3.3.0.Final.jar" deploy-path="/lib" handle="module:/classpath/lib/sous-chef/lib/hibernate-5.2.7/jboss-logging-3.3.0.Final.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jandex-2.0.3.Final.jar" deploy-path="/" handle="module:/classpath/lib/sous-chef/lib/hibernate-5.2.7/jandex-2.0.3.Final.jar">
+            <dependent-object>Module_1487279810430</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="dom4j-1.6.1.jar" deploy-path="/lib" handle="module:/classpath/lib/sous-chef/lib/hibernate-5.2.7/dom4j-1.6.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="antlr-2.7.7.jar" deploy-path="/lib" handle="module:/classpath/lib/sous-chef/lib/hibernate-5.2.7/antlr-2.7.7.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hibernate-commons-annotations-5.0.1.Final.jar" deploy-path="/" handle="module:/classpath/lib/sous-chef/lib/hibernate-5.2.7/hibernate-commons-annotations-5.0.1.Final.jar">
+            <dependent-object>Module_1487279810637</dependent-object>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hibernate-jpa-2.1-api-1.0.0.Final.jar" deploy-path="/lib" handle="module:/classpath/lib/sous-chef/lib/hibernate-5.2.7/hibernate-jpa-2.1-api-1.0.0.Final.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="geronimo-jta_1.1_spec-1.1.1.jar" deploy-path="/lib" handle="module:/classpath/lib/sous-chef/lib/hibernate-5.2.7/geronimo-jta_1.1_spec-1.1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="domain-data-dao.jar" deploy-path="/lib" handle="module:/resource/domain-data-dao/domain-data-dao">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="domain-data-model.jar" deploy-path="/lib" handle="module:/resource/domain-data-model/domain-data-model">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

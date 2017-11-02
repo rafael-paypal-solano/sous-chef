@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ORACLE-JDBC"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/data-common"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/com.ibm.ws.ast.st.runtime.runtimeTarget.v85/WebSphere Application Server traditional V8.5"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/WEBSPHERE-THINCLIENT"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/domain-data-model"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/domain-client"/>
+	<classpathentry kind="lib" path="/domain-ejb/domain-ejb-client.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/LOG4J"/>
+	<classpathentry kind="output" path="classes"/>
+</classpath>

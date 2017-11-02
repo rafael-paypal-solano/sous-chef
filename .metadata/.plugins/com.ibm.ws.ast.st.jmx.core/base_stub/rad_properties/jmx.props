@@ -1,0 +1,2 @@
+always.use.jre.trust.key.stores.nonibm=true
+jre.home.path.nonibm=/opt/ibm/java-x86_64-80/jre

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><libraryInfos>
+<libraryInfo home="/opt/ibm/java-x86_64-80" version="1.8.0">
+<bootpath>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/amd64/compressedrefs/jclSC180/vm.jar"/>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/se-service.jar"/>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/cuda4j.jar"/>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/math.jar"/>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/ibmorb.jar"/>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/ibmorbapi.jar"/>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/ibmcfw.jar"/>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/ibmpkcs.jar"/>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/ibmcertpathfw.jar"/>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/ibmjgssfw.jar"/>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/ibmjssefw.jar"/>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/ibmsaslfw.jar"/>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/ibmjcefw.jar"/>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/ibmjgssprovider.jar"/>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/ibmjsseprovider2.jar"/>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/ibmcertpathprovider.jar"/>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/xmldsigfw.jar"/>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/xml.jar"/>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/charsets.jar"/>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/resources.jar"/>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/rt.jar"/>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/dataaccess.jar"/>
+</bootpath>
+<extensionDirs>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="/opt/ibm/java-x86_64-80/jre/lib/endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+<libraryInfo home="/opt/IBM/WebSphere/AppServer/java/jre" version="1.8.0">
+<bootpath>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/amd64/compressedrefs/jclSC180/vm.jar"/>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/se-service.jar"/>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/cuda4j.jar"/>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/math.jar"/>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/ibmorb.jar"/>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/ibmorbapi.jar"/>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/ibmcfw.jar"/>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/ibmpkcs.jar"/>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/ibmcertpathfw.jar"/>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/ibmjgssfw.jar"/>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/ibmjssefw.jar"/>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/ibmsaslfw.jar"/>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/ibmjcefw.jar"/>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/ibmjgssprovider.jar"/>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/ibmjsseprovider2.jar"/>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/ibmcertpathprovider.jar"/>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/xmldsigfw.jar"/>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/xml.jar"/>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/charsets.jar"/>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/resources.jar"/>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/rt.jar"/>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/dataaccess.jar"/>
+</bootpath>
+<extensionDirs>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="/opt/IBM/WebSphere/AppServer/java/jre/lib/endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+</libraryInfos>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<appdeployment:Deployment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:appdeployment="http://www.ibm.com/websphere/appserver/schemas/5.0/appdeployment.xmi" xmi:id="Deployment_1487218076149">
+  <deployedObject xmi:type="appdeployment:ApplicationDeployment" xmi:id="sous-chef_1487218076149" startingWeight="10">
+    <modules xmi:type="appdeployment:WebModuleDeployment" xmi:id="domain-web-1487218076149" startingWeight="10000" uri="domain-web.war" classloaderMode="PARENT_LAST"/>
+    <modules xmi:type="appdeployment:EJBModuleDeployment" xmi:id="domain-ejb-1487218076149" startingWeight="5000" uri="domain-ejb.jar" classloaderMode="PARENT_LAST"/>
+    <classloader xmi:id="Classloader_1487218076149" mode="PARENT_LAST">
+      <libraries xmi:id="LibraryRef_1487218601202" libraryName="HIBERNATE"/>
+    </classloader>
+  </deployedObject>
+</appdeployment:Deployment>

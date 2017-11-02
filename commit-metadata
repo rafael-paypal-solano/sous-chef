@@ -1,0 +1,12 @@
+#!/bin/bash
+CURRENT_DIR=`pwd`
+GIT_DIR=$1
+cd $GIT_DIR
+DIRECTORY_LIST=`git status | egrep '\.(classpath|project|settings)' | sed -e 's/\/$//'`
+
+for d in $DIRECTORY_LIST
+do
+	./commit-dir $d
+done
+
+cd $CURRENT_DIR

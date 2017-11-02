@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<connections:connections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:connections="http://www.ibm.com/websphere/wdo/connections">
+  <connection id="Oracle 12c JDBC OCI thin">
+    <development xsi:type="connections:rsc-live-connection" id="Oracle 12c JDBC OCI thin_dev" name="Oracle 12c JDBC OCI thin"/>
+    <runtime xsi:type="connections:datasource-connection" auto-deploy="true" class-location="/opt/instantclient/instantclient_12_1/xstreams.jar:/opt/instantclient/instantclient_12_1/ojdbc7.jar" id="Oracle 12c JDBC OCI thin_runtime" classname="oracle.jdbc.pool.OracleConnectionPoolDataSource" database-name="orcl" jndi-name="jdbc/Oracle 12c JDBC OCI thin" port-number="1521" resource-reference-name="Oracle 12c JDBC OCI thin" server-name="localhost" sql-vendor-type="52" userid="C##SOUSCHEF"/>
+  </connection>
+</connections:connections>

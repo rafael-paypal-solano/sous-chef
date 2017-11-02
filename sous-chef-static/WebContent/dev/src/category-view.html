@@ -1,0 +1,240 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html"/>
+<link rel="import" href="../bower_components/vaadin-grid/vaadin-grid.html"/>
+<link rel="import" href="../bower_components/iron-form/iron-form.html"/>
+<link rel="import" href="../bower_components/paper-input/paper-input.html"/>
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html"/>
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html"/>
+<link rel="import" href="../bower_components/paper-item/paper-item.html"/>
+<link rel="import" href="../bower_components/paper-button/paper-button.html"/>
+<link rel="import" href="../bower_components/paper-card/paper-card.html"/>
+
+<link rel="import" href="shared-styles.html">
+ 
+<dom-module id="category-view">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+
+     .card-icon {
+       width:48px; height:auto; vertical-align: middle; margin-top:auto; margin-bottom:auto; margin-right:1em;
+     }
+
+     .data-form {
+       display:block;
+       margin:0px;
+
+     }
+
+     .hidden-section {
+       display:none;
+     }    
+
+    </style>
+
+    
+    
+    <paper-card style="width:100%">
+      <div class="card-content">
+          <h1><img class="card-icon" src="images/categories/{{categoryId}}.svg"/><apan>{{categoryName}}</span></h1>
+
+          <vaadin-grid id="componentsDataGrid">
+            <table>
+              <colgroup>
+                <col name="name">
+                <col name="stock">
+                <col name="price">
+              </colgroup>
+            </table>
+          </vaadin-grid>          
+          <form is="iron-form" id="componentForm" content-type="application/json" class="hidden-section" action="/souschef-app/domain-web/service/component/">
+            <paper-input name="name" label="Name" required></paper-input>
+            <paper-input name="packageSize" label="Size" type="number"  required></paper-input>
+            <paper-dropdown-menu label="Unit">                
+              <paper-listbox class="dropdown-content" required attr-for-selected="label" selected="{{packageUnit}}">
+                <paper-item label="POUND">POUND</paper-item>
+                <paper-item label="GRAM">GRAM</paper-item>
+                <paper-item label="KILOGRAM">KILOGRAM</paper-item>
+                <paper-item label="LITRE">LITRE</paper-item>
+              </paper-listbox>
+            </paper-dropdown-menu>        
+            <paper-input name="stock" label="Stock" type="number"  required></paper-input>
+            <paper-input name="price" label="Price" type="number"  required></paper-input>
+            <input type="hidden" name="id" />
+            <paper-button id="componentFormSaveButton">Save</paper-button>
+          </form>  
+          
+      </div>
+    </paperd-card>
+
+
+    <iron-ajax
+      id="componentsLoader"
+      url="souschef-app/domain-web/service/component/by-category/{{categoryId}}"
+      handle-as="json"
+      on-response="onComponentsLoaderResponse"
+      debounce-duration="300">
+    </iron-ajax>
+
+     <iron-ajax
+      method="POST"
+      id="componentManager"
+      url="souschef-app/domain-web/service/component/"
+      handle-as="json"
+      on-response="onComponentManagerResponse"
+      debounce-duration="300">
+    </iron-ajax>
+
+  </template>
+
+  <script>
+
+    function onComponentsDataGridSelected() {
+        var
+          selected = parseInt(componentsDataGrid.selection.selected());
+          component = null;
+
+        if(!isNaN(selected))
+          component = componentsDataGrid.items[selected];
+
+        if(component) {
+          this.refreshComponentForm(component);
+        }
+    }
+
+
+    function categoryViewEventHandler(event) {
+      var data = event.data;
+      switch(data) {
+        case "onBackIcon":
+          this.onBackIcon(event);
+        default:          
+          break;
+      }
+    }
+
+    function onComponentForm_SaveButton_Click() {      
+      var componentForm = this.$.componentForm;
+      componentForm.submit();
+    }
+
+
+    function onComponentForm_PreSubmit() {
+      var component;      
+      event.preventDefault();
+      //TODO: User polymer marshaling/unmarshaling functions insteadof direct assigment.
+      component = this.$.componentForm.serialize();
+      component.packageUnit = this.packageUnit;
+      component.category = {id: this.categoryId, name: this.categoryName};
+      this.$.componentManager.body = JSON.stringify({bean: component});
+      this.$.componentManager.generateRequest();
+    }
+
+    Polymer({
+      is: 'category-view',
+      properties: {
+        categoryId: {
+          type: String
+        },
+        categoryName: {
+          type: String                  
+        },
+        components: {
+          type:Array
+        },
+        packageUnit: {
+          type: String
+        }
+      },
+      
+      switchToEditMode: function() {
+        this.$.componentsDataGrid.classList.add("hidden-section");
+        this.$.componentForm.classList.remove("hidden-section");
+        window.postMessage("onEditMode", "*")
+      },
+
+      switchToListMode: function() {
+        this.$.componentsDataGrid.classList.remove("hidden-section");
+        this.$.componentForm.classList.add("hidden-section");
+        window.postMessage("onListMode", "*")
+      },
+      
+      refreshComponentForm: function(component) {
+        var
+          componentForm = this.$.componentForm;
+
+          //TODO: User polymer marshaling/unmarshaling functions insteadof direct assigment.
+          componentForm.querySelector('[name="name"]').value = component.name;
+          this.packageUnit = component.packageUnit;
+          componentForm.querySelector('[name="packageSize"]').value = component.packageSize;
+          componentForm.querySelector('[name="stock"]').value = component.stock;
+          componentForm.querySelector('[name="price"]').value = component.price;
+          componentForm.querySelector('[name="id"]').value = component.id;
+          this.switchToEditMode();
+      },
+
+      onComponentsLoaderResponse: function(event) {
+        var componentsDataGrid = this.$.componentsDataGrid;
+
+        this.components = event.detail.response;   
+        componentsDataGrid.items = this.components;
+      },
+
+      onComponentManagerResponse: function (event) {
+        this.reload({id: this.categoryId, name: this.categoryName});
+      },
+
+      reload: function(category) {
+        /**
+        TODO:
+          1) Add pagination for large datasets.
+        */
+        this.categoryId = category.id;
+        this.categoryName = category.name;
+        
+        this.$.componentsLoader.url = RunTime.host()+ `/souschef-app/domain-web/service/component/by-category/${category.id}`        
+        this.$.componentsLoader.generateRequest();                
+        this.switchToListMode();
+      },
+
+      onBackIcon: function(event) {
+        this.switchToListMode();
+      },
+
+
+      ready: function() {   
+        var
+          componentsLoader = this.$.componentsLoader
+          categoryJSON = localStorage.getItem("category-view/category"),
+          componentsDataGrid = this.$.componentsDataGrid,
+          componentForm = this.$.componentForm;
+          componentFormSaveButton = this.$.componentFormSaveButton;
+
+        if(categoryJSON != null)
+          this.reload(JSON.parse(categoryJSON));
+
+        componentsDataGrid.addEventListener('selected-items-changed', onComponentsDataGridSelected.bind(this));        
+        componentFormSaveButton.addEventListener('tap', onComponentForm_SaveButton_Click.bind(this));
+        componentForm.addEventListener('iron-form-presubmit', onComponentForm_PreSubmit.bind(this));
+        window.addEventListener("message", categoryViewEventHandler.bind(this));
+        this.$.componentManager.url = RunTime.host()+'/souschef-app/domain-web/service/component/'
+      },
+
+      attached: function() {
+      }  
+    });
+  </script>
+</dom-module>
